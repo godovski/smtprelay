@@ -5,7 +5,8 @@ COPY ./ ./
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
-RUN go build -o smtprelay
+ENV GOARCH=amd64
+RUN go build -buildvcs=false -ldflags "-w -s" -o smtprelay
 
 FROM alpine:3.24
 
